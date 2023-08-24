@@ -1,23 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import "./styles.css"
+import NewSkillForm from './NewSkillForm';
+import SkillList from './SkillList';
+import { useState } from 'react';
+// import SkillListItem from './SkillListItem';
+
+
 
 function App() {
+  
+  const [showSkills, setShowSkills] = useState(true)
+
+  function addSkill(skill) {
+    setSkills([...skills, skill])
+  }
+  
+  const [skills, setSkills] = useState([
+    {name: 'HTML', level: 5},
+    {name: 'CSS', level: 5},
+    {name: 'JAVASCRIPT', level: 5},
+    {name: 'PYTHON', level: 5},
+
+  ]) 
+ 
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>React Dev Skills</h1>
+      {showSkills &&<SkillList skills = {skills}/>} 
+      <hr></hr>
+      <NewSkillForm addSkill={addSkill} />
+      
     </div>
   );
 }
